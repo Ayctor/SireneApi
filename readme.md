@@ -51,3 +51,7 @@ It will throw an exception if you use this function to retrieve companies
 ### getBy()
 
 It will throw an exception if you use this function with the first param as a string and no second param.
+
+## License
+
+[MIT](https://github.com/Ayctor/SireneApi/blob/master/LICENSE)

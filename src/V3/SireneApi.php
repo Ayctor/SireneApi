@@ -1,6 +1,6 @@
 <?php
 
-namespace SireneApi;
+namespace SireneApi\V3;
 
 use GuzzleHttp\Client;
 
@@ -40,7 +40,7 @@ class SireneApi
     /**
      * Set the method to companies
      *
-     * @return  \SireneApi\SireneApi
+     * @return SireneApi
      */
     public function companies(): self
     {
@@ -52,7 +52,7 @@ class SireneApi
     /**
      * Set the method to establishments
      *
-     * @return  \SireneApi\SireneApi
+     * @return SireneApi
      */
     public function establishments(): self
     {
@@ -64,7 +64,7 @@ class SireneApi
     /**
      * Get all companies or establishments
      *
-     * @return  array
+     * @return array
      */
     public function all(): array
     {
@@ -74,9 +74,11 @@ class SireneApi
     /**
      * Get establishment by siret
      *
-     * @throws  \Exception  if the method is not "etablissements"
+     * @param string $siret
      *
-     * @return  \SirenApi\SireneApi
+     * @throws \Exception if the method is not "etablissements"
+     *
+     * @return array
      */
     public function getBySiret(string $siret): array
     {
@@ -90,9 +92,11 @@ class SireneApi
     }
 
     /**
-     * Get establishments by siren
+     * Get companies by siren
      *
-     * @return  \SirenApi\SireneApi
+     * @param string $siren
+     *
+     * @return array
      */
     public function getBySiren(string $siren): array
     {
@@ -102,12 +106,12 @@ class SireneApi
     }
 
     /**
-     * Get establishments by siren
+     * Get companies or establishments by params
      *
-     * @param  mixed   $params
-     * @param  string  $value
+     * @param mixed  $params
+     * @param string $value
      *
-     * @return  \SirenApi\SireneApi
+     * @return array
      */
     public function getBy($params, ?string $value = null): array
     {
@@ -127,12 +131,12 @@ class SireneApi
     /**
      * Make an HTTP GET request for retrieving data
      *
-     * @param  string  $method
-     * @param  array   $params
+     * @param string $method
+     * @param array  $params
      *
-     * @return  array
+     * @return array
      */
-    public function request(string $method, array $params = []): array
+    public function request(string $method, $params = []): array
     {
         $response = $this->client->request('GET', $method, [
             'query' => $params,
